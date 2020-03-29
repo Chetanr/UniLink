@@ -9,7 +9,7 @@ public class Sale extends Post
 	public Sale (String id, String title, String description, String creator_id
 			, String status, int minimum_raise, int highest_offer)
 	{
-		this(id, title, description, creator_id, );
+		super(id, title, description, creator_id, status);
 		this.minimum_raise = minimum_raise;
 		this.highest_offer = highest_offer;
 	}
