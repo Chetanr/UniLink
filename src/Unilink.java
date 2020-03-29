@@ -35,6 +35,7 @@ public class Unilink {
 		}
 
 	}
+
 	
 	//function to validate login 
 	public static int ValidateLogin (String id)
@@ -73,5 +74,60 @@ public class Unilink {
 		
 		return ch;
 	}
+	
+	
+	//function for New Event Post
+	public void newEventPost()
+	{
+		
+	}
 
+	
+	//function for New Sale Post
+	public void newSalePost()
+	{
+		
+	}
+	
+	
+	//function for new Job Post
+	public void newJobPost()
+	{
+		
+	}
+	
+	
+	//function for reply to Post
+	public void replytoPost()
+	{
+	
+	}
+	
+	
+	//function for display my Posts
+	public void displayMyPost()
+	{
+			
+	}
+	
+	
+	//function for display all my Posts
+	public void displayAllMyPost()
+	{
+			
+	}
+	
+	
+	//function for close Post
+	public void closePost()
+	{
+			
+	}
+	
+	
+	//function for delete Post
+	public void deletePost()
+	{
+			
+	}
 }
