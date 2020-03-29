@@ -28,6 +28,27 @@ public class Unilink {
 		if ( validate == 1 )
 		{
 			ch = options();
+			
+			switch(ch)
+			{
+				case 1: newEventPost();
+						break;
+				case 2: newSalePost();
+						break;
+				case 3: newJobPost();
+						break;
+				case 4: replyToPost();
+						break;
+				case 5: displayMyPost();
+						break;
+				case 6: displayAllMyPost();
+						break;
+				case 7: closePost();
+						break;
+				case 8: deletePost();
+						break;
+				case 9: break;
+			}
 		}
 		else
 		{
@@ -77,56 +98,56 @@ public class Unilink {
 	
 	
 	//function for New Event Post
-	public void newEventPost()
+	public static void newEventPost()
 	{
 		
 	}
 
 	
 	//function for New Sale Post
-	public void newSalePost()
+	public static void newSalePost()
 	{
 		
 	}
 	
 	
 	//function for new Job Post
-	public void newJobPost()
+	public static void newJobPost()
 	{
 		
 	}
 	
 	
 	//function for reply to Post
-	public void replytoPost()
+	public static void replyToPost()
 	{
 	
 	}
 	
 	
 	//function for display my Posts
-	public void displayMyPost()
+	public static void displayMyPost()
 	{
 			
 	}
 	
 	
 	//function for display all my Posts
-	public void displayAllMyPost()
+	public static void displayAllMyPost()
 	{
 			
 	}
 	
 	
 	//function for close Post
-	public void closePost()
+	public static void closePost()
 	{
 			
 	}
 	
 	
 	//function for delete Post
-	public void deletePost()
+	public static void deletePost()
 	{
 			
 	}
