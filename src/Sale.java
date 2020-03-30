@@ -9,9 +9,17 @@ public class Sale extends Post
 	public Sale (String id, String title, String description, String creator_id
 			, String status, int minimum_raise, int highest_offer)
 	{
-		super(id, title, description, creator_id, status);
+		super (id, title, description, creator_id, status);
 		this.minimum_raise = minimum_raise;
 		this.highest_offer = highest_offer;
+	}
+	
+	//constructor to create a new sale post
+	public Sale (String id, String title, String description, int asking_price, int minimum_raise)
+	{
+		super (id, title, description);
+		this.asking_price = asking_price;
+		this.minimum_raise = minimum_raise;
 	}
 	
 	

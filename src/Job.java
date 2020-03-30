@@ -4,12 +4,20 @@ public class Job extends Post
 	private int proposed_price;
 	private int lowest_offer;
 	
+	//constructor for job class
 	public Job (String id, String title, String description, String creator_id
 			, String status, int proposed_price, int lowest_offer)
 	{
 		super(id, title, description, creator_id, status);
 		this.proposed_price = proposed_price;
 		this.lowest_offer = lowest_offer;
+	}
+	
+	//constructor to create new job post
+	public Job(String id, String title, String description, int proposed_price)
+	{
+		super (id, title, description);
+		this.proposed_price = proposed_price;
 	}
 
 	

@@ -20,6 +20,16 @@ public abstract class Post
 		this.replies = replies;
 	}
 	
+	//constructor to create a new post
+	public Post (String id, String title, String description)
+	{
+		this.id = id;
+		this.title = title;
+		this.description = description;
+	}
+	
+
+	
 	
 	//return information about a post
 	public String getPostDetails ()

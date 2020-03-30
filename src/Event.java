@@ -16,6 +16,17 @@ public class Event extends Post
 		this.capacity = capacity;
 	}
 
+	//constructor to create a new event post
+	public Event (String id, String title, String description ,
+			 String venue, String date, int capacity)
+	{
+		super (id, title, description);
+		this.venue = venue;
+		this.date = date;
+		this.capacity = capacity;
+	}
+	
+
 	//handle replies to a post
 	@Override
 	public boolean handleReply (Reply reply) 

@@ -1,12 +1,14 @@
 import java.util.Scanner;
 import java.lang.*;
 
-public class Unilink {
+public class Unilink 
+{
+	static int event_num = 1, sale_num = 1, job_num = 1;
 
 	public static void main (String[] args) 
 	{
 		
-		int ch, validate = 0;
+		int ch, validate = 0, option;
 		String id = null;
 		
 		System.out.println ( "**UniLink System**" );
@@ -27,28 +29,34 @@ public class Unilink {
 		
 		if ( validate == 1 )
 		{
-			ch = options();
-			
-			switch(ch)
+			while (ch != 9)
 			{
-				case 1: newEventPost();
-						break;
-				case 2: newSalePost();
-						break;
-				case 3: newJobPost();
-						break;
-				case 4: replyToPost();
-						break;
-				case 5: displayMyPost();
-						break;
-				case 6: displayAllMyPost();
-						break;
-				case 7: closePost();
-						break;
-				case 8: deletePost();
-						break;
-				case 9: break;
+				ch = options();
+				
+				switch(ch)
+				{
+					case 1: newEventPost();
+							break;
+					case 2: newSalePost();
+							break;
+					case 3: newJobPost();
+							break;
+					case 4: replyToPost();
+							break;
+					case 5: displayMyPost();
+							break;
+					case 6: displayAllMyPost();
+							break;
+					case 7: closePost();
+							break;
+					case 8: deletePost();
+							break;
+					case 9: break;
+				}
+				
 			}
+			
+			
 		}
 		else
 		{
@@ -99,7 +107,31 @@ public class Unilink {
 	
 	//function for New Event Post
 	public static void newEventPost()
-	{
+	{ 
+		String name, desc, venue, date, id = "EVE";
+		int capacity = 0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter details of the event below:");
+		System.out.println("Name:");
+		name = sc.next();
+		System.out.println("Description:");
+		desc = sc.next();
+		System.out.println("Venue:");
+		venue = sc.next();
+		System.out.println("Date:");
+		date = sc.next();
+		System.out.println("Capacity:");
+		capacity = sc.nextInt();
+		
+		id = id + event_num;
+		event_num++;
+		
+		
+		Event event = new Event(id, name, desc, venue, date, capacity);
+		
+		System.out.println("Success! Your event has been created with id " + id);
 		
 	}
 
@@ -107,6 +139,26 @@ public class Unilink {
 	//function for New Sale Post
 	public static void newSalePost()
 	{
+		String name, desc, id = "SAL";
+		int asking_price = 0, minimum_raise = 0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter details of the item to sale below:");
+		System.out.println("Name:");
+		name = sc.next();
+		System.out.println("Description:");
+		desc = sc.next();
+		System.out.println("Asking Price:");
+		asking_price = sc.nextInt();
+		System.out.println("Minimum Raise:");
+		minimum_raise = sc.nextInt();
+		
+		id = id + sale_num;
+		
+		sale_num++;
+		
+		Sale sale = new Sale(id, name, desc, asking_price, minimum_raise);
 		
 	}
 	
@@ -114,14 +166,47 @@ public class Unilink {
 	//function for new Job Post
 	public static void newJobPost()
 	{
+		String name, desc, id = "JOB";
+		int proposed_price = 0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter details of the item to sale below:");
+		System.out.println("Name:");
+		name = sc.next();
+		System.out.println("Description:");
+		desc = sc.next();
+		System.out.println("Proposed Price:");
+		proposed_price = sc.nextInt();
+		
+		id = id + job_num;
+		
+		job_num++;
+		
+		Job job = new Job (id, name, desc, proposed_price);
 		
 	}
 	
 	
 	//function for reply to Post
-	public static void replyToPost()
+	public static int replyToPost()
 	{
-	
+		String post_id;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter post id or 'Q' to quit:");
+		post_id = sc.next();
+		
+		if (post_id.equals('Q'))
+		{
+			return 0;
+		}
+		else
+		{
+			
+		}
+		
+		return 1;
 	}
 	
 	
