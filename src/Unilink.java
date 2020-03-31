@@ -1,15 +1,16 @@
-import java.util.Scanner;
+import java.util.*;
 import java.lang.*;
 
 public class Unilink 
 {
 	static int event_num = 1, sale_num = 1, job_num = 1;
+	static String id = null;
+	static ArrayList <Post> post = new ArrayList<Post>();
 
 	public static void main (String[] args) 
 	{
 		
 		int ch, validate = 0, option;
-		String id = null;
 		
 		System.out.println ( "**UniLink System**" );
 		System.out.println ( "1. Login" );
@@ -108,7 +109,7 @@ public class Unilink
 	//function for New Event Post
 	public static void newEventPost()
 	{ 
-		String name, desc, venue, date, id = "EVE";
+		String name, desc, venue, date, post_id = "EVE";
 		int capacity = 0;
 		
 		Scanner sc = new Scanner(System.in);
@@ -125,11 +126,12 @@ public class Unilink
 		System.out.println("Capacity:");
 		capacity = sc.nextInt();
 		
-		id = id + event_num;
+		post_id = post_id + event_num;
 		event_num++;
 		
 		
-		Event event = new Event(id, name, desc, venue, date, capacity);
+		Event event = new Event(id, name, desc, venue, date, capacity, "OPEN", id);
+		post.add(event);
 		
 		System.out.println("Success! Your event has been created with id " + id);
 		
@@ -139,8 +141,8 @@ public class Unilink
 	//function for New Sale Post
 	public static void newSalePost()
 	{
-		String name, desc, id = "SAL";
-		int asking_price = 0, minimum_raise = 0;
+		String name, desc, post_id = "SAL";
+		double asking_price = 0.0, minimum_raise = 0.0;
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -150,23 +152,23 @@ public class Unilink
 		System.out.println("Description:");
 		desc = sc.next();
 		System.out.println("Asking Price:");
-		asking_price = sc.nextInt();
+		asking_price = sc.nextDouble();
 		System.out.println("Minimum Raise:");
-		minimum_raise = sc.nextInt();
+		minimum_raise = sc.nextDouble();
 		
-		id = id + sale_num;
+		post_id = post_id + sale_num;
 		
 		sale_num++;
 		
-		Sale sale = new Sale(id, name, desc, asking_price, minimum_raise);
-		
+		Sale sale = new Sale(post_id, name, desc, asking_price, minimum_raise, "OPEN", id);
+		post.add(sale);
 	}
 	
 	
 	//function for new Job Post
 	public static void newJobPost()
 	{
-		String name, desc, id = "JOB";
+		String name, desc, post_id = "JOB";
 		int proposed_price = 0;
 		
 		Scanner sc = new Scanner(System.in);
@@ -179,12 +181,12 @@ public class Unilink
 		System.out.println("Proposed Price:");
 		proposed_price = sc.nextInt();
 		
-		id = id + job_num;
+		post_id = post_id + job_num;
 		
 		job_num++;
 		
-		Job job = new Job (id, name, desc, proposed_price);
-		
+		Job job = new Job (post_id, name, desc, proposed_price, "OPEN", id);
+		post.add(job);
 	}
 	
 	
@@ -213,14 +215,20 @@ public class Unilink
 	//function for display my Posts
 	public static void displayMyPost()
 	{
-			
+		for (Post i : post)
+		{
+			System.out.println(i.getPostDetails());
+		}
 	}
 	
 	
 	//function for display all my Posts
 	public static void displayAllMyPost()
 	{
-			
+		for (Post i : post)
+		{
+			System.out.println(i.getPostDetails());
+		}
 	}
 	
 	

@@ -18,9 +18,9 @@ public class Event extends Post
 
 	//constructor to create a new event post
 	public Event (String id, String title, String description ,
-			 String venue, String date, int capacity)
+			 String venue, String date, int capacity, String status, String creator_id)
 	{
-		super (id, title, description);
+		super (id, title, description, status, creator_id);
 		this.venue = venue;
 		this.date = date;
 		this.capacity = capacity;
@@ -52,8 +52,9 @@ public class Event extends Post
 	@Override
 	public String getPostDetails ()
 	{
-		return this.getId() + this.getTitle() + this.getDescription() + this.getCreator_id() + this.getStatus()
-				+ this.getVenue() + this.getDate() + this.getCapacity() + this.getAttendee_count();
+		return "\nPost Id: " + this.getId() + "\nTitle: " + this.getTitle() + "\nDescription: " + this.getDescription() 
+		+"\nCreator Id: " + this.getCreator_id() + "\nStatus: " + this.getStatus()+ "\nVenue: " + this.getVenue() 
+		+ "\nDate: " + this.getDate() + "\nCapacity: " + this.getCapacity() + "\nAttendee Count: " + this.getAttendee_count();
 	}
 
 	public String getVenue() {

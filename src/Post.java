@@ -9,23 +9,25 @@ public abstract class Post
 	
 	
 	//Constructor for post class
-	public Post (String id, String title, String description,
-			String creator_id, String replies)
-	{
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.creator_id = creator_id;
-		this.status = "OPEN";
-		this.replies = replies;
-	}
+//	public Post (String id, String title, String description,
+//			String creator_id, String replies)
+//	{
+//		this.id = id;
+//		this.title = title;
+//		this.description = description;
+//		this.creator_id = creator_id;
+//		this.status = "OPEN";
+//		this.replies = replies;
+//	}
 	
 	//constructor to create a new post
-	public Post (String id, String title, String description)
+	public Post (String id, String title, String description, String status, String creator_id)
 	{
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.status = status;
+		this.creator_id = creator_id;
 	}
 	
 
@@ -34,7 +36,8 @@ public abstract class Post
 	//return information about a post
 	public String getPostDetails ()
 	{
-		return this.getId() + this.getTitle() + this.getDescription() + this.getCreator_id() + this.getStatus();
+		return "\nPost ID: \n" + this.getId() + "\nTitle: " + this.getTitle() + "\nDescription: " + this.getDescription() 
+		+ "\nCreator ID: " + this.getCreator_id() + "\nStatus: " + this.getStatus();
 	}
 	
 	//abstract class to handle reply

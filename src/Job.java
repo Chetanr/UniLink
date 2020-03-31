@@ -14,9 +14,9 @@ public class Job extends Post
 	}
 	
 	//constructor to create new job post
-	public Job(String id, String title, String description, int proposed_price)
+	public Job(String id, String title, String description, int proposed_price, String status, String creator_id)
 	{
-		super (id, title, description);
+		super (id, title, description, status, creator_id);
 		this.proposed_price = proposed_price;
 	}
 
@@ -62,7 +62,8 @@ public class Job extends Post
 	@Override
 	public String getPostDetails ()
 	{
-		return this.getId() + this.getTitle() + this.getDescription() + this.getCreator_id() + this.getStatus();
+		return "\nPost Id: " + this.getId() + "\nTitle: " + this.getTitle() + "\nDescription: " + this.getDescription() 
+		+ "\nCreator Id: " + this.getCreator_id() + "\nStatus: " + this.getStatus() + "\nProposed Offer: " + this.getProposed_price();
 	}
 
 }
