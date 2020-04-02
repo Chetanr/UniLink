@@ -10,61 +10,68 @@ public class Unilink
 	public static void main (String[] args) 
 	{
 		
-		int ch, validate = 0, option;
+		int ch = 0, validate = 0, option;
 		
-		System.out.println ( "**UniLink System**" );
-		System.out.println ( "1. Login" );
-		System.out.println ( "2. Quit" );
-		
-		Scanner sc = new Scanner ( System.in );
-		ch = sc.nextInt();
-		
-		switch(ch)
-		{ 
-			case 1: System.out.println ("Enter the login id: ");
-					id = sc.next();
-					validate = ValidateLogin (id);
-					break;
-			case 2: System.exit(0);
-		}
-		
-		if ( validate == 1 )
+
+		while (ch != 2)
 		{
-			while (ch != 9)
-			{
-				ch = options();
-				
-				switch(ch)
-				{
-					case 1: newEventPost();
-							break;
-					case 2: newSalePost();
-							break;
-					case 3: newJobPost();
-							break;
-					case 4: replyToPost();
-							break;
-					case 5: displayMyPost();
-							break;
-					case 6: displayAllMyPost();
-							break;
-					case 7: closePost();
-							break;
-					case 8: deletePost();
-							break;
-					case 9: break;
-				}
-				
+			System.out.println ( "**UniLink System**" );
+			System.out.println ( "1. Login" );
+			System.out.println ( "2. Quit" );
+			
+			Scanner sc = new Scanner ( System.in );
+			ch = sc.nextInt();
+			
+			switch(ch)
+			{ 
+				case 1: System.out.println ("Enter the login id: ");
+						id = sc.next();
+						validate = ValidateLogin (id);
+						break;
+				case 2: System.out.println("Thank you for using the system.!");
+						System.exit(0);
 			}
 			
-			
-		}
-		else
-		{
-			System.out.println("Bye");
-		}
+			if ( validate == 1 )
+			{
+				while (ch != 9)
+				{
+					ch = options();
+					
+					switch(ch)
+					{
+						case 1: newEventPost();
+								break;
+						case 2: newSalePost();
+								break;
+						case 3: newJobPost();
+								break;
+						case 4: replyToPost();
+								break;
+						case 5: displayMyPost();
+								break;
+						case 6: displayAllMyPost();
+								break;
+						case 7: closePost();
+								break;
+						case 8: deletePost();
+								break;
+						case 9: logout();
+								break;
+					}
+					
+				}
+				
+				
+			}
+			else
+			{
+				System.out.println("Bye");
+			}
 
-	}
+		}
+		}
+		
 
 	
 	//function to validate login 
@@ -130,7 +137,7 @@ public class Unilink
 		event_num++;
 		
 		
-		Event event = new Event(id, name, desc, venue, date, capacity, "OPEN", id);
+		Event event = new Event(post_id, name, desc, venue, date, capacity, "OPEN", id);
 		post.add(event);
 		
 		System.out.println("Success! Your event has been created with id " + id);
@@ -193,7 +200,7 @@ public class Unilink
 	//function for reply to Post
 	public static int replyToPost()
 	{
-		String post_id;
+		String post_id, response;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Enter post id or 'Q' to quit:");
@@ -205,7 +212,82 @@ public class Unilink
 		}
 		else
 		{
-			
+			if (post_id.charAt(1) == 'E')
+			{
+				fetchPostDetails(post_id);
+				System.out.println("Enter '1' to join Event or 'Q' to quit");
+				response = sc.next();
+				
+				if(response.equals("1"))
+				{
+					for (Post i : post)
+					{
+						if (i instanceof Event)
+						{
+							if (i.getId().equals(post_id))
+							{
+								if(i.getStatus().equals("OPEN"))
+								{
+									if (((Event) i).getCapacity() <= ((Event) i).getAttendee_count())
+									{
+										((Event) i).setAttendee_count(1);
+										System.out.println("Evemnt registration successful.!");
+										return 1;
+									}
+									else if (((Event) i).getCapacity() > ((Event) i).getAttendee_count())
+									{
+										System.out.println("Event is already full.");
+										return 0;
+									}
+								}
+								else if (i.getStatus().equals("CLOSED"))
+								{
+									System.out.println("Sorry.! The Event is closed.");
+								}
+							}
+						}
+						
+					}
+					
+				}
+				else if(response.equals("Q"))
+				{
+					return 0;
+				}
+			}
+			else if (post_id.charAt(1) == 'J')
+			{
+				fetchPostDetails(post_id);
+				System.out.println("Enter '1' to join Event or 'Q' to quit");
+				response = sc.next();
+				
+				if(response.equals("1"))
+				{
+					for (Post i : post)
+					{
+						if (i.getId().equals(post_id))
+						{
+							if (((Event) i).getCapacity() <= ((Event) i).getAttendee_count())
+							{
+								((Event) i).setAttendee_count(1);
+								System.out.println("Evemnt registration successful.!");
+								return 1;
+							}
+							else if (((Event) i).getCapacity() > ((Event) i).getAttendee_count())
+							{
+								System.out.println("Event is already full.");
+								return 0;
+							}
+							
+						}
+					}
+					
+				}
+				else if(response.equals("Q"))
+				{
+					return 0;
+				}
+			}
 		}
 		
 		return 1;
@@ -217,8 +299,25 @@ public class Unilink
 	{
 		for (Post i : post)
 		{
-			System.out.println(i.getPostDetails());
+			if (i.getCreator_id().equals(id))
+			{
+				System.out.println(i.getPostDetails());
+			}
 		}
+	}
+	
+	
+	//fetch the details of the post to reply
+	public static String fetchPostDetails(String post_id)
+	{
+		for (Post i : post)
+		{
+			if (i.getId().contentEquals(post_id))
+			{
+				return i.getPostDetails();
+			}
+		}
+		return "Invalid Post ID! Post not found.";
 	}
 	
 	
@@ -235,13 +334,83 @@ public class Unilink
 	//function for close Post
 	public static void closePost()
 	{
+		Scanner sc = new Scanner (System.in);
+		String post_id;
+		
+		System.out.println("Enter the id or 'Q' to quit: ");
+		post_id = sc.next();
+		
+		if(post_id != "Q")
+		{
+			return;
+		}
+		else if (post_id.equals("Q"))
+		{
 			
+			for (Post i : post)
+			{
+				if (i.getId().equals(post_id))
+				{
+					if (i.getCreator_id().equals(id))
+					{
+						i.setStatus("CLOSED");
+						System.out.println("Post has ben successfully closed.!");
+						return;
+					}
+					else
+					{
+						System.out.println("Access Denied! You are not the owner of the post.");
+					}
+				}
+			}
+			System.out.println("Post not found.!");
+		}
+		
 	}
 	
 	
 	//function for delete Post
 	public static void deletePost()
 	{
-			
+		Scanner sc = new Scanner (System.in);
+		String post_id;
+		
+		System.out.println("Enter the id or 'Q' to quit: ");
+		post_id = sc.next();
+		
+		
+		if (post_id != "Q")
+		{
+			for (Post i : post)
+			{
+				if (i.getId().equals(post_id))
+				{
+					if(i.getCreator_id().equals(id))
+					{
+						post.remove(i);
+						System.out.println("Post has been successfuly deleted.");
+						return;
+					}	
+					else
+					{
+						System.out.println("Access Denied! You are not the owner of the post.");
+					}
+				}
+			}
+			System.out.println("Post not found.!");
+		}
+		else
+		{
+			return ;
+		}
+		
+		return ; 
+		
+	}
+	
+	//logout of the system
+	public static void logout()
+	{
+		System.out.println("You have successfully logged out!");
 	}
 }

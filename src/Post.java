@@ -116,6 +116,18 @@ public abstract class Post
 	public void setId (String id) {
 		this.id = id;
 	}
+
+
+    //abstract method to set the attendee_count variable from Event class
+//	protected abstract void setAttendee_count(int i);
+//
+//
+//    //abstract method to get the capacity of an event from Event class
+//	protected abstract int getCapacity();
+//
+//
+//	//abstract method to get the attendee count of an event from Event class
+//	protected abstract int getAttendee_count();
 	
 
 
