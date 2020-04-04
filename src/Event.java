@@ -86,7 +86,7 @@ public class Event extends Post
 	}
 
 	public void setAttendee_count(int attendee_count) {
-		this.attendee_count = ++attendee_count;
+		this.attendee_count = this.attendee_count + attendee_count;
 	}
 	
 

@@ -86,8 +86,7 @@ public class Sale extends Post
 	@Override
 	public String getReplyDetails ()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 	
 

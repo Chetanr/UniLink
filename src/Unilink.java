@@ -95,6 +95,7 @@ public class Unilink
 		Scanner sc = new Scanner (System.in);
 		int ch = 0;
 		
+		System.out.println("---------------------");
 		System.out.println ( "**UniLink System**" );
 		System.out.println ( "1. New Event Post" );
 		System.out.println ( "2. New Sale Post" );
@@ -121,6 +122,7 @@ public class Unilink
 		
 		Scanner sc = new Scanner(System.in);
 		
+		System.out.println("-------------");
 		System.out.println("Enter details of the event below:");
 		System.out.println("Name:");
 		name = sc.next();
@@ -140,7 +142,7 @@ public class Unilink
 		Event event = new Event(post_id, name, desc, venue, date, capacity, "OPEN", id);
 		post.add(event);
 		
-		System.out.println("Success! Your event has been created with id " + id);
+		System.out.println("Success! Your event has been created with id " + post_id);
 		
 	}
 
@@ -153,6 +155,7 @@ public class Unilink
 		
 		Scanner sc = new Scanner(System.in);
 		
+		System.out.println("-------------");
 		System.out.println("Enter details of the item to sale below:");
 		System.out.println("Name:");
 		name = sc.next();
@@ -169,6 +172,8 @@ public class Unilink
 		
 		Sale sale = new Sale(post_id, name, desc, asking_price, minimum_raise, "OPEN", id);
 		post.add(sale);
+		
+		System.out.println("Success! Your event has been created with id " + post_id);
 	}
 	
 	
@@ -180,7 +185,8 @@ public class Unilink
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Enter details of the item to sale below:");
+		System.out.println("-------------");
+		System.out.println("Enter details of the job below:");
 		System.out.println("Name:");
 		name = sc.next();
 		System.out.println("Description:");
@@ -194,6 +200,8 @@ public class Unilink
 		
 		Job job = new Job (post_id, name, desc, proposed_price, "OPEN", id);
 		post.add(job);
+		
+		System.out.println("Success! Your event has been created with id " + post_id);
 	}
 	
 	
@@ -212,98 +220,157 @@ public class Unilink
 		}
 		else
 		{
-			if (post_id.charAt(1) == 'E')
+			if (post_id.charAt(0) == 'E')
 			{
-				fetchPostDetails(post_id);
-				System.out.println("Enter '1' to join Event or 'Q' to quit");
-				response = sc.next();
+				respondToEventPost(post_id);
 				
-				if(response.equals("1"))
-				{
-					for (Post i : post)
-					{
-						if (i instanceof Event)
-						{
-							if (i.getId().equals(post_id))
-							{
-								if(i.getStatus().equals("OPEN"))
-								{
-									if (((Event) i).getCapacity() <= ((Event) i).getAttendee_count())
-									{
-										((Event) i).setAttendee_count(1);
-										System.out.println("Evemnt registration successful.!");
-										return 1;
-									}
-									else if (((Event) i).getCapacity() > ((Event) i).getAttendee_count())
-									{
-										System.out.println("Event is already full.");
-										return 0;
-									}
-								}
-								else if (i.getStatus().equals("CLOSED"))
-								{
-									System.out.println("Sorry.! The Event is closed.");
-								}
-							}
-						}
-						
-					}
-					
-				}
-				else if(response.equals("Q"))
-				{
-					return 0;
-				}
 			}
-			else if (post_id.charAt(1) == 'J')
+			else if (post_id.charAt(0) == 'J')
 			{
-				fetchPostDetails(post_id);
-				System.out.println("Enter '1' to join Event or 'Q' to quit");
-				response = sc.next();
-				
-				if(response.equals("1"))
-				{
-					for (Post i : post)
-					{
-						if (i.getId().equals(post_id))
-						{
-							if (((Event) i).getCapacity() <= ((Event) i).getAttendee_count())
-							{
-								((Event) i).setAttendee_count(1);
-								System.out.println("Evemnt registration successful.!");
-								return 1;
-							}
-							else if (((Event) i).getCapacity() > ((Event) i).getAttendee_count())
-							{
-								System.out.println("Event is already full.");
-								return 0;
-							}
-							
-						}
-					}
-					
-				}
-				else if(response.equals("Q"))
-				{
-					return 0;
-				}
+				respondToJobPost(post_id);	
 			}
-		}
-		
+			else if (post_id.charAt(0) == 'S')
+			{
+				respondToSalePost(post_id);
+			}
+		}	
 		return 1;
 	}
 	
 	
-	//function for display my Posts
-	public static void displayMyPost()
+	//respond to job post
+	public static int respondToJobPost(String post_id)
 	{
+		double offerPrice;
+		Scanner sc = new Scanner(System.in);
+		
+		fetchPostDetails(post_id);
+		System.out.println("Enter your offer: ");
+		offerPrice = sc.nextDouble();
+		
 		for (Post i : post)
 		{
-			if (i.getCreator_id().equals(id))
+			if (i.getId().equals(post_id))
+			{	
+				if(offerPrice < ((Job) i).getLowest_offer())
+				{
+					System.out.println("Offer Accecpted.!");
+					return 1;
+				}
+				else if (offerPrice > ((Job) i).getLowest_offer())
+				{
+					System.out.println("Offer not accepted.!");
+					return 0;
+				}	
+			}	
+		}
+		return 0;
+	}
+	
+	
+	//respond to sale post
+	public static int respondToSalePost(String post_id)
+	{
+		double offer;
+		Scanner sc = new Scanner(System.in);
+		
+		fetchPostDetails(post_id);
+		System.out.println("Enter your offer or 'Q' to quit:");
+		offer = sc.nextDouble();
+		
+		for (Post i : post)
+		{
+			if(i.getId().equals(post_id));
 			{
-				System.out.println(i.getPostDetails());
+				if (i.getStatus().equals("OPEN"))
+				{
+					if (offer < ((Sale) i).getMinimum_raise())
+					{
+						System.out.println("Offer not accepted.!");
+						return 0;
+					}
+					else if (offer > ((Sale) i).getMinimum_raise())
+					{
+						System.out.println("Your offer has been submitted.!");
+						if ( (((Sale) i).getHighest_offer() - offer ) < ((Sale) i).getAsking_price())
+						{
+							if (offer >= ((Sale) i).getAsking_price())
+							{
+								((Sale) i).setHighest_offer (offer);
+								i.setStatus("CLOSED");
+								System.out.println("Congratulation.!" + i.getTitle() + " has been sold to you");
+								System.out.println("Please contact " + i.getCreator_id() + " for more details");
+								return 1;
+							}
+							else
+							{
+								((Sale) i).setHighest_offer (offer);
+								System.out.println("However, your offer is below the asking price");
+								System.out.println("The item is still on sale.!");
+								return 1;
+							}
+							
+						}
+					}
+				}
+				else
+				{
+					System.out.println("Post already closed.! Reply not accepted");
+				}
+			}
+			
+			
+			
+		}
+		
+		return 0;
+	}
+	
+	
+	
+	
+	//respond to event post
+	public static int respondToEventPost(String post_id)
+	{
+		String response ;
+		Scanner sc = new Scanner(System.in);
+			
+		fetchPostDetails(post_id);
+		System.out.println("Enter '1' to join Event or 'Q' to quit");
+		response = sc.next();
+			
+		if(response.equals("1"))
+		{
+			for (Post i : post)
+			{
+				if (i.getId().equals(post_id))
+				{
+					if(i.getStatus().equals("OPEN"))
+					{
+						if (((Event) i).getCapacity() >= ((Event) i).getAttendee_count())
+						{
+							((Event) i).setAttendee_count(1);
+							System.out.println("Event registration successful.!");
+							if (((Event) i).getAttendee_count() == ((Event) i).getCapacity())
+							{
+								i.setStatus("CLOSED");
+							}
+							return 1;
+						}
+					}
+					else if (i.getStatus().equals("CLOSED"))
+					{
+						System.out.println("Sorry.! The Event is closed.");
+					}
+				}
 			}
 		}
+		else if(response.equals("Q"))
+		{
+			return 0;
+		}
+			
+		return 0;
 	}
 	
 	
@@ -314,11 +381,32 @@ public class Unilink
 		{
 			if (i.getId().contentEquals(post_id))
 			{
-				return i.getPostDetails();
+				if(i.getCreator_id().equals(id))
+				{
+					return "Replying to your own post is invalid.!";
+				}
+				else
+				{
+					return i.getPostDetails();
+				}	
 			}
 		}
 		return "Invalid Post ID! Post not found.";
 	}
+	
+	//function for display my Posts
+		public static void displayMyPost()
+		{
+			for (Post i : post)
+			{
+				if (i.getCreator_id().equals(id))
+				{
+					System.out.println(i.getPostDetails());
+					System.out.println("-----------------");
+				}
+			}
+		}
+		
 	
 	
 	//function for display all my Posts
@@ -413,4 +501,7 @@ public class Unilink
 	{
 		System.out.println("You have successfully logged out!");
 	}
+	
+	
+	
 }
