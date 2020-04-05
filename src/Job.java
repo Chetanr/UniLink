@@ -22,40 +22,44 @@ public class Job extends Post
 
 	
 	@Override
-	public boolean handleReply(Reply reply) {
-		// TODO Auto-generated method stub
+	public boolean handleReply(Reply reply) 
+	{
 		return false;
 	}
 
 	
 	@Override
-	public String getReplyDetails() {
-		// TODO Auto-generated method stub
+	public String getReplyDetails() 
+	{
 		return null;
 	}
 	
 	
 	//accessor for proposed_price
-	public int getProposed_price() {
+	public int getProposed_price() 
+	{
 		return proposed_price;
 	}
 
 	
 	//mutator for proposed_price
-	public void setProposed_price(int proposed_price) {
+	public void setProposed_price(int proposed_price) 
+	{
 		this.proposed_price = proposed_price;
 	}
 
 	
 	//accessor for plowest_offer
-	public int getLowest_offer() {
+	public int getLowest_offer() 
+	{
 		return lowest_offer;
 	}
 
 	
 	
 	//mutator for lowest_offer
-	public void setLowest_offer(int lowest_offer) {
+	public void setLowest_offer(int lowest_offer) 
+	{
 		this.lowest_offer = lowest_offer;
 	}
 

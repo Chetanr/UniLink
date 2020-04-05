@@ -37,73 +37,85 @@ public abstract class Post
 	
 	
 	//accessor for title
-	public String getTitle () {
+	public String getTitle () 
+	{
 		return this.title;
 	}
 
 	
 	//mutator for title
-	public void setTitle (String title) {
+	public void setTitle (String title) 
+	{
 		this.title = title;
 	}
 
 	
 	//accessor for description
-	public String getDescription () {
+	public String getDescription () 
+	{
 		return this.description;
 	}
 
 	
 	//mutator for description
-	public void setDescription (String description) {
+	public void setDescription (String description) 
+	{
 		this.description = description;
 	}
 
 
 	//accessor for creator_id
-	public String getCreator_id () {
+	public String getCreator_id () 
+	{
 		return this.creator_id;
 	}
 
 
 	//mutator for creator_id
-	public void setCreator_id (String creator_id) {
+	public void setCreator_id (String creator_id) 
+	{
 		this.creator_id = creator_id;
 	}
 
 
 	//accessor for status
-	public String getStatus () {
+	public String getStatus () 
+	{
 		return this.status;
 	}
 
 
 	//mutator for status
-	public void setStatus (String status) {
+	public void setStatus (String status) 
+	{
 		this.status = status;
 	}
 
 
 	//accessor for replies
-	public String getReplies () {
+	public String getReplies () 
+	{
 		return this.replies;
 	}
 
 
 	//mutator for replies
-	public void setReplies (String replies) {
+	public void setReplies (String replies) 
+	{
 		this.replies = replies;
 	}
 
 
 	//accessor for id
-	public String getId () {
+	public String getId () 
+	{
 		return this.id;
 	}
 
 
 	//mutator for id
-	public void setId (String id) {
+	public void setId (String id) 
+	{
 		this.id = id;
 	}
 }

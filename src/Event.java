@@ -57,35 +57,43 @@ public class Event extends Post
 		+ "\nDate: " + this.getDate() + "\nCapacity: " + this.getCapacity() + "\nAttendee Count: " + this.getAttendee_count();
 	}
 
-	public String getVenue() {
+	public String getVenue() 
+	{
 		return this.venue;
 	}
 
-	public void setVenue(String venue) {
+	public void setVenue(String venue) 
+	{
 		this.venue = venue;
 	}
 
-	public String getDate() {
+	public String getDate() 
+	{
 		return this.date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(String date) 
+	{
 		this.date = date;
 	}
 
-	public int getCapacity() {
+	public int getCapacity() 
+	{
 		return this.capacity;
 	}
 
-	public void setCapacity(int capacity) {
+	public void setCapacity(int capacity) 
+	{
 		this.capacity = capacity;
 	}
 
-	public int getAttendee_count() {
+	public int getAttendee_count() 
+	{
 		return this.attendee_count;
 	}
 
-	public void setAttendee_count(int attendee_count) {
+	public void setAttendee_count(int attendee_count) 
+	{
 		this.attendee_count = this.attendee_count + attendee_count;
 	}
 	

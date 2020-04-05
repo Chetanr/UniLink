@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Sale extends Post
 {
@@ -6,7 +5,6 @@ public class Sale extends Post
 	private double highest_offer;
 	private double minimum_raise;
 	
-	static ArrayList <Reply> replyList = new ArrayList<Reply>();
 
 	//constructor for Sale class
 	public Sale (String id, String title, String description, String creator_id
@@ -81,7 +79,7 @@ public class Sale extends Post
 	@Override
 	public boolean handleReply (Reply reply)
 	{
-		replyList.add(reply);
+		
 		return false;
 	}
 

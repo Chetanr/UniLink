@@ -408,8 +408,10 @@ public class Unilink
 				{
 					System.out.println(i.getPostDetails());
 					System.out.println("-----------------");
+					return ;
 				}
 			}
+			System.out.println("There are no posts created by you.!");
 		}
 		
 	
