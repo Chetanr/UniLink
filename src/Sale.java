@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 
 public class Sale extends Post
 {
 	private double asking_price;
 	private double highest_offer;
 	private double minimum_raise;
+	
+	static ArrayList <Reply> replyList = new ArrayList<Reply>();
 
 	//constructor for Sale class
 	public Sale (String id, String title, String description, String creator_id
@@ -28,7 +31,7 @@ public class Sale extends Post
 	public String getPostDetails ()
 	{
 		return "\nPost ID: " + this.getId() + "\nTitle: " + this.getTitle() + "\nDescription: " + this.getDescription() + 
-				"\nCreator Id: " + this.getCreator_id() + "\nStatus: " + this.getStatus();
+				"\nCreator Id: " + this.getCreator_id() + "\nStatus: " + this.getStatus() + "\nMinimum Raise: " + this.getMinimum_raise() + "\nHighest Offer: " + this.getHighest_offer();
 				//+ this.getMinimum_raise() + this.getHighest_offer();
 	}
 
@@ -78,7 +81,7 @@ public class Sale extends Post
 	@Override
 	public boolean handleReply (Reply reply)
 	{
-		
+		replyList.add(reply);
 		return false;
 	}
 

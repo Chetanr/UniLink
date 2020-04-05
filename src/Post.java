@@ -8,18 +8,6 @@ public abstract class Post
 	private String replies;
 	
 	
-	//Constructor for post class
-//	public Post (String id, String title, String description,
-//			String creator_id, String replies)
-//	{
-//		this.id = id;
-//		this.title = title;
-//		this.description = description;
-//		this.creator_id = creator_id;
-//		this.status = "OPEN";
-//		this.replies = replies;
-//	}
-	
 	//constructor to create a new post
 	public Post (String id, String title, String description, String status, String creator_id)
 	{
@@ -31,14 +19,14 @@ public abstract class Post
 	}
 	
 
-	
-	
 	//return information about a post
 	public String getPostDetails ()
 	{
 		return "\nPost ID: \n" + this.getId() + "\nTitle: " + this.getTitle() + "\nDescription: " + this.getDescription() 
 		+ "\nCreator ID: " + this.getCreator_id() + "\nStatus: " + this.getStatus();
 	}
+	
+	
 	
 	//abstract class to handle reply
 	public abstract boolean handleReply (Reply reply);
@@ -53,11 +41,13 @@ public abstract class Post
 		return this.title;
 	}
 
+	
 	//mutator for title
 	public void setTitle (String title) {
 		this.title = title;
 	}
 
+	
 	//accessor for description
 	public String getDescription () {
 		return this.description;
@@ -116,19 +106,4 @@ public abstract class Post
 	public void setId (String id) {
 		this.id = id;
 	}
-
-
-    //abstract method to set the attendee_count variable from Event class
-//	protected abstract void setAttendee_count(int i);
-//
-//
-//    //abstract method to get the capacity of an event from Event class
-//	protected abstract int getCapacity();
-//
-//
-//	//abstract method to get the attendee count of an event from Event class
-//	protected abstract int getAttendee_count();
-	
-
-
 }

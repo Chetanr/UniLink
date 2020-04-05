@@ -292,6 +292,11 @@ public class Unilink
 					else if (offer > ((Sale) i).getMinimum_raise())
 					{
 						System.out.println("Your offer has been submitted.!");
+						
+						Reply reply = new Reply (post_id, 1, id);
+						i.handleReply(reply);
+						
+						
 						if ( (((Sale) i).getHighest_offer() - offer ) < ((Sale) i).getAsking_price())
 						{
 							if (offer >= ((Sale) i).getAsking_price())
