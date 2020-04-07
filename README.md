@@ -1,5 +1,5 @@
 UniLink
-#The application is named UniLink, which allows all students in a university to create and publish various types of posts and reply to those posts
+The application is named UniLink, which allows all students in a university to create and publish various types of posts and reply to those posts
 #Unilink supports 3 types of posts.
 1. Event: the post creator specifies information about an upcoming event. Other students can see that post in the UniLink system and reply to the post toattend that event.
 2. Sale: when a student has an item to sell, that student can create a sale post in the system and provide necessary details about the item. The post is visible to other students and each of them can reply with a price they want to pay for the item.
