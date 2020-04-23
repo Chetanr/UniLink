@@ -1,3 +1,4 @@
+#Unilink
 Unilink is a simple command based application, which allows all students in a university to create and publish various types of posts and reply to those posts
 #Unilink supports 3 types of posts.
 1. Event: the post creator specifies information about an upcoming event. Other students can see that post in the UniLink system and reply to the post toattend that event.
